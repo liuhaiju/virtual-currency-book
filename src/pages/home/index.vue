@@ -22,7 +22,7 @@
             <div class="unit account-unit">
                 <div class="account-about">
                     <span class="name account-name">{{itemFour.account_name}}</span>
-                    <span class="amount">{{itemFour.total_amount}}</span>
+                    <span class="balance">[{{account_balance_amount(itemFour)}}]</span>
                 </div>
                 <div class="list-content">
                     <div class="table-title">
@@ -51,24 +51,35 @@
                         <div class="list" v-for="(itemSix, indexSix) in itemFour.contract_list" :key="indexSix">
                             <div class="unit">
                                 <span class="name">{{itemSix.currency_name}}</span>
-                                <span @click="modify(indexFour, indexSix, 'CONTRACT')">{{itemSix.total_amount}}</span>
+                                <span @click="modify(indexFour, indexSix, 'CONTRACT')">{{itemSix.total_amount}}【{{itemSix.usdt_total_amount}}】</span>
                             </div>
                         </div>
                     </template>
                 </div>
             </div>
         </div>
+        <div class="title account-name">
+            <span>策略推荐</span>
+        </div>
+        <div class="content-list">
+            <div class="content-unit">
+                <span>1、1000USDT 2的7次幂</span>
+            </div>
+        </div>
         <alertAmount 
         @inputContent="getInputContent" 
         @closeAlert="close"
         v-if="show_edit_alert"></alertAmount>
-        <addAlert v-if="show_add_alert" @closeADDAlert="closeADD"></addAlert>
+        <addAlert 
+        v-if="show_add_alert" 
+        @closeADDAlert="closeADD"
+        @addList="addCurrencyInfo"></addAlert>
     </div>
 </template>
 
 <script>
 
-import { division } from "@/common-js/count-rules.js"
+import { division, addition, Subtraction, Multiplication } from "@/common-js/count-rules.js"
 import { liandongDigits } from "@/common-js/check-rule.js"
 
 import alertAmount from "@/components/alert.vue"
@@ -85,38 +96,38 @@ export default {
             current_point_list: [
                 {
                     currency_name: "BTC",
-                    high_point_list: ["52000", "54000"],
-                    low_point_list: ["50000"]
+                    high_point_list: ["47800", "48000"],
+                    low_point_list: ["44700", "45500"]
                 },
                 {
                     currency_name: "ETH",
-                    high_point_list: ["4000"],
-                    low_point_list: ["3700"]
+                    high_point_list: ["3700"],
+                    low_point_list: ["3350"]
                 },
                 {
                     currency_name: "LTC",
-                    high_point_list: ["238"],
-                    low_point_list: ["210"]
+                    high_point_list: [],
+                    low_point_list: []
                 },
                 {
                     currency_name: "DOT",
-                    high_point_list: ["34.7", "35"],
-                    low_point_list: ["30", "32"]
+                    high_point_list: [],
+                    low_point_list: []
                 }
             ],
             // 当前账户列表
             currenct_account_list: [
                 {
                     account_name: "BIXIN",
-                    total_amount: 11715,
+                    total_amount: 9769,
                     current_have_currency_list: [
                         {
                             currency_name: "BTC",
                             principal: {
-                                amount: "2245",
+                                amount: "1245",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "0.04901788",
+                            current_currency_amount: "0.0301252",
                             digit: 4
                         },
                         {
@@ -141,11 +152,13 @@ export default {
                     contract_list: [
                         {
                             currency_name: "BTC",
-                            total_amount: "0.00307263"
+                            total_amount: "0.00307263",
+                            usdt_total_amount: "150"
                         },
                         {
                             currency_name: "ETH",
-                            total_amount: "0.0475"
+                            total_amount: "0.0475",
+                            usdt_total_amount: "150"
                         }
                     ]
                 },
@@ -188,18 +201,9 @@ export default {
                             digit: 11
                         },
                         {
-                            currency_name: "HT",
-                            principal: {
-                                amount: "100",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "7.3485734",
-                            digit: 4
-                        },
-                        {
                             currency_name: "FIL",
                             principal: {
-                                amount: "",
+                                amount: "800",
                                 unit: "USDT"
                             },
                             current_currency_amount: "5.9244234",
@@ -208,21 +212,12 @@ export default {
                         {
                             currency_name: "DOT",
                             principal: {
-                                amount: "",
+                                amount: "470",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "12.8364462",
+                            current_currency_amount: "19.8311288",
                             digit: 4
-                        },
-                        {
-                            currency_name: "UNI",
-                            principal: {
-                                amount: "",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "8.06794661",
-                            digit: 4
-                        },
+                        }
                     ],
                     contract_list: []
                 },
@@ -236,17 +231,8 @@ export default {
                                 amount: "250",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "748.251",
+                            current_currency_amount: "763.808",
                             digit: 4
-                        },
-                        {
-                            currency_name: "DOGE",
-                            principal: {
-                                amount: "100",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "321.678",
-                            digit: 8
                         },
                         {
                             currency_name: "SAND",
@@ -254,11 +240,51 @@ export default {
                                 amount: "100",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "97.902",
+                            current_currency_amount: "101.902",
+                            digit: 4
+                        },
+                        {
+                            currency_name: "FTT",
+                            principal: {
+                                amount: "350",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "4.35564",
+                            digit: 4
+                        },
+                        {
+                            currency_name: "MATIC",
+                            principal: {
+                                amount: "300",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "162.4",
                             digit: 4
                         }
                     ],
                     contract_list: []
+                },
+                {
+                    account_name: "bitget",
+                    total_amount: "1500",
+                    current_have_currency_list: [
+                        {
+                            currency_name: "BGB",
+                            principal: {
+                                amount: "125",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "1760.016912",
+                            digit: 5
+                        }
+                    ],
+                    contract_list: [
+                        {
+                            currency_name: "USDT",
+                            total_amount: "1000",
+                            usdt_total_amount: "1000"
+                        },
+                    ]
                 }
             ],
             /**
@@ -280,10 +306,36 @@ export default {
         /**
          * 页面参数：
          * 持仓成本价
+         * 账户余额
          */
         holding_cost_price() {
             return function(tolal_price, buy_amount, get_digit=4) {
                 return liandongDigits(division(tolal_price||0, buy_amount), get_digit)
+            }
+        },
+        account_balance_amount() {
+            return function(item) {
+                let have_total_amount = item.total_amount
+                let get_position_currency_list = item.current_have_currency_list
+                let get_contract_currency_list = item.contract_list
+                    let get_position_currency_list_totalAmount = 0
+                    let get_contract_currency_list_totalAmount = 0
+                    if(get_position_currency_list.length>0) {
+                        for(let i=0;i<get_position_currency_list.length;i++) {
+                            get_position_currency_list_totalAmount = addition(get_position_currency_list[i].principal.amount||0, get_position_currency_list_totalAmount)
+                        }
+                    }
+                    if(get_contract_currency_list.length>0) {
+                        for(let j=0;j<get_contract_currency_list.length;j++) {
+                            get_contract_currency_list_totalAmount = addition(get_contract_currency_list[j].usdt_total_amount, get_contract_currency_list_totalAmount)
+                        }
+                    }
+                    return `{
+                        "仓本位": ${Multiplication(have_total_amount, 0.1)},
+                        "当前仓位": ${addition(get_position_currency_list_totalAmount, get_contract_currency_list_totalAmount)},
+                        "剩余仓位": ${Subtraction(have_total_amount, addition(get_position_currency_list_totalAmount, get_contract_currency_list_totalAmount))},
+                        "总仓位": ${have_total_amount}
+                    }`
             }
         }
     },
@@ -327,10 +379,16 @@ export default {
             this.show_edit_alert = false
         },
         /**
-         * 添加
+         * 添加:
+         * 关闭
+         * 确定
          */
         closeADD() {
             this.show_add_alert = false
+        },
+        addCurrencyInfo(get_object) {
+            this.current_point_list.push(get_object)
+            this.closeADD()
         }
     }
 }
@@ -351,8 +409,6 @@ export default {
 }
 .list {
     .unit {
-        // display: flex;
-        // align-items: flex-start;
         .name {
             width: 100px;
         }
@@ -363,7 +419,6 @@ export default {
             }
         }
         .account-about {
-            width: 120px;
             span.account-name {
                 color: black;
                 font-size: 18px;
