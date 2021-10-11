@@ -97,119 +97,123 @@ export default {
             current_point_list: [
                 {
                     currency_name: "BTC",
-                    high_point_list: ["46500"],
+                    high_point_list: ["45400"],
                     low_point_list: ["43500"]
                 },
                 {
                     currency_name: "ETH",
-                    high_point_list: ["3400"],
-                    low_point_list: ["3150"]
-                },
-                {
-                    currency_name: "LTC",
-                    high_point_list: [],
-                    low_point_list: []
+                    high_point_list: ["3200"],
+                    low_point_list: ["2950"]
                 },
                 {
                     currency_name: "DOT",
-                    high_point_list: ['38'],
-                    low_point_list: ['32.5']
-                }
+                    high_point_list: ['33.5'],
+                    low_point_list: ['30.5']
+                },
+                {
+                    currency_name: "LINK",
+                    high_point_list: [''],
+                    low_point_list: ['']
+                },
+                {
+                    currency_name: "CELO",
+                    high_point_list: [''],
+                    low_point_list: ['']
+                },
             ],
             // 当前账户列表
             currenct_account_list: [
                 {
                     account_name: "总账户",
-                    total_amount: '14509',
+                    total_amount: '10211',
                     current_have_currency_list: [
                         {
-                            currency_name: "NFT",
+                            currency_name: "ETH",
                             principal: {
-                                amount: "100",
+                                amount: "1400",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "41666666.666",
-                            digit: 11
+                            current_currency_amount: "0.49010038",
+                            digit: 8
+                        },
+                        {
+                            currency_name: "DOT",
+                            principal: {
+                                amount: "829.0836708",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "24.6876",
+                            digit: 8
                         },
                         {
                             currency_name: "FIL",
                             principal: {
-                                amount: "900",
+                                amount: "750",
                                 unit: "USDT"
                             },
                             current_currency_amount: "7.0984706",
                             digit: 4
                         },
                         {
-                            currency_name: "TLM",
+                            currency_name: "HT",
                             principal: {
-                                amount: "500",
+                                amount: "119.92838286",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "1268.808",
-                            digit: 4
-                        },
-                        {
-                            currency_name: "FTT",
-                            principal: {
-                                amount: "500",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "6.93564",
-                            digit: 4
-                        },
-                        {
-                            currency_name: "BGB",
-                            principal: {
-                                amount: "312.47149619",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "4489.740417",
+                            current_currency_amount: "16.11812926",
                             digit: 5
-                        },
-                        {
-                            currency_name: "BAL",
-                            principal: {
-                                amount: "140",
-                                unit: "USDT"
-                            },
-                            current_currency_amount: "5.49",
-                            digit: 4
                         },
                         {
                             currency_name: "UNI",
                             principal: {
-                                amount: "200",
+                                amount: "411.9826",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "8.71",
+                            current_currency_amount: "18.85",
                             digit: 4
                         },
                         {
-                            currency_name: "SUSHI",
+                            currency_name: "MATIC",
                             principal: {
-                                amount: "200",
+                                amount: "199.99637662",
                                 unit: "USDT"
                             },
-                            current_currency_amount: "17.8",
-                            digit: 4
-                        }
+                            current_currency_amount: "144.74",
+                            digit: 6
+                        },
+                        {
+                            currency_name: "BGB",
+                            principal: {
+                                amount: "500",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "7290.8997098",
+                            digit: 5
+                        },
+                        {
+                            currency_name: "HOO",
+                            principal: {
+                                amount: "1000",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "2234.1",
+                            digit: 5
+                        },
+                        {
+                            currency_name: "FTT",
+                            principal: {
+                                amount: "1000",
+                                unit: "USDT"
+                            },
+                            current_currency_amount: "10.60197",
+                            digit: 5
+                        },
                     ],
                     contract_list: [
                         {
-                            currency_name: "BTC",
-                            total_amount: "0.00307263",
-                            usdt_total_amount: "150"
-                        },
-                        {
-                            currency_name: "ETH",
-                            total_amount: "0.0475",
-                            usdt_total_amount: "150"
-                        },
-                        {
                             currency_name: "USDT",
-                            total_amount: "1000",
-                            usdt_total_amount: "1000"
+                            total_amount: "500",
+                            usdt_total_amount: "500"
                         }
                     ]
                 }
